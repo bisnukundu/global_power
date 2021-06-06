@@ -3798,9 +3798,219 @@ module.exports = {
   \*****************************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
+__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js"); // All javascript code in this project for now is just for demo DON'T RELY ON IT
+
+
+var random = function random() {
+  var max = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 100;
+  return Math.round(Math.random() * max) + 20;
+};
+
+var randomData = function randomData() {
+  return [random(), random(), random(), random(), random(), random(), random(), random(), random(), random(), random(), random()];
+};
+
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+var cssColors = function cssColors(color) {
+  return getComputedStyle(document.documentElement).getPropertyValue(color);
+};
+
+var getColor = function getColor() {
+  var _window$localStorage$;
+
+  return (_window$localStorage$ = window.localStorage.getItem('color')) !== null && _window$localStorage$ !== void 0 ? _window$localStorage$ : 'cyan';
+};
+
+var colors = {
+  primary: cssColors("--color-".concat(getColor())),
+  primaryLight: cssColors("--color-".concat(getColor(), "-light")),
+  primaryLighter: cssColors("--color-".concat(getColor(), "-lighter")),
+  primaryDark: cssColors("--color-".concat(getColor(), "-dark")),
+  primaryDarker: cssColors("--color-".concat(getColor(), "-darker"))
+};
+var barChart = new Chart(document.getElementById('barChart'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [{
+      data: randomData(),
+      backgroundColor: colors.primary,
+      hoverBackgroundColor: colors.primaryDark
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        gridLines: false,
+        ticks: {
+          beginAtZero: true,
+          stepSize: 50,
+          fontSize: 12,
+          fontColor: '#97a4af',
+          fontFamily: 'Open Sans, sans-serif',
+          padding: 10
+        }
+      }],
+      xAxes: [{
+        gridLines: false,
+        ticks: {
+          fontSize: 12,
+          fontColor: '#97a4af',
+          fontFamily: 'Open Sans, sans-serif',
+          padding: 5
+        },
+        categoryPercentage: 0.5,
+        maxBarThickness: '10'
+      }]
+    },
+    cornerRadius: 2,
+    maintainAspectRatio: false,
+    legend: {
+      display: false
+    }
+  }
+});
+var doughnutChart = new Chart(document.getElementById('doughnutChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Oct', 'Nov', 'Dec'],
+    datasets: [{
+      data: [random(), random(), random()],
+      backgroundColor: [colors.primary, colors.primaryLighter, colors.primaryLight],
+      hoverBackgroundColor: colors.primaryDark,
+      borderWidth: 0,
+      weight: 0.5
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      position: 'bottom'
+    },
+    title: {
+      display: false
+    },
+    animation: {
+      animateScale: true,
+      animateRotate: true
+    }
+  }
+});
+var activeUsersChart = new Chart(document.getElementById('activeUsersChart'), {
+  type: 'bar',
+  data: {
+    labels: [].concat(_toConsumableArray(randomData()), _toConsumableArray(randomData())),
+    datasets: [{
+      data: [].concat(_toConsumableArray(randomData()), _toConsumableArray(randomData())),
+      backgroundColor: colors.primary,
+      borderWidth: 0,
+      categoryPercentage: 1
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        display: false,
+        gridLines: false
+      }],
+      xAxes: [{
+        display: false,
+        gridLines: false
+      }],
+      ticks: {
+        padding: 10
+      }
+    },
+    cornerRadius: 2,
+    maintainAspectRatio: false,
+    legend: {
+      display: false
+    },
+    tooltips: {
+      prefix: 'Users',
+      bodySpacing: 4,
+      footerSpacing: 4,
+      hasIndicator: true,
+      mode: 'index',
+      intersect: true
+    },
+    hover: {
+      mode: 'nearest',
+      intersect: true
+    }
+  }
+});
+var lineChart = new Chart(document.getElementById('lineChart'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [{
+      data: randomData(),
+      fill: false,
+      borderColor: colors.primary,
+      borderWidth: 2,
+      pointRadius: 0,
+      pointHoverRadius: 0
+    }]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      yAxes: [{
+        gridLines: false,
+        ticks: {
+          beginAtZero: false,
+          stepSize: 50,
+          fontSize: 12,
+          fontColor: '#97a4af',
+          fontFamily: 'Open Sans, sans-serif',
+          padding: 20
+        }
+      }],
+      xAxes: [{
+        gridLines: false
+      }]
+    },
+    maintainAspectRatio: false,
+    legend: {
+      display: false
+    },
+    tooltips: {
+      hasIndicator: true,
+      intersect: false
+    }
+  }
+});
+var randomUserCount = 0;
+var usersCount = document.getElementById('usersCount');
+
+var fakeUsersCount = function fakeUsersCount() {
+  randomUserCount = random();
+  activeUsersChart.data.datasets[0].data.push(randomUserCount);
+  activeUsersChart.data.datasets[0].data.splice(0, 1);
+  activeUsersChart.update();
+  usersCount.innerText = randomUserCount;
+};
+
+setInterval(function () {
+  fakeUsersCount();
+}, 1000);
 
 /***/ }),
 

@@ -14,8 +14,8 @@ class CreateManPowersTable extends Migration
     public function up()
     {
         Schema::create('man_powers', function (Blueprint $table) {
-            $table->id();
-            $table->integer('country_id');
+            $table->increments('id');
+            $table->unsignedInteger('country_id');
             $table->integer('total_population');
             $table->integer('man_power');
             $table->integer('fit_for_service');
@@ -25,6 +25,7 @@ class CreateManPowersTable extends Migration
             $table->integer('reserve_personnel');
             $table->integer('paramilitary');
             $table->text('notes');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

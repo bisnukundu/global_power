@@ -14,8 +14,8 @@ class CreateAirPowersTable extends Migration
     public function up()
     {
         Schema::create('air_powers', function (Blueprint $table) {
-            $table->id();
-            $table->integer('country_id');
+            $table->increments('id');
+            $table->unsignedInteger('country_id');
             $table->integer('total_aircraft_strength');
             $table->integer('fighters/interceptors');
             $table->integer('dedicated attack');
@@ -26,6 +26,7 @@ class CreateAirPowersTable extends Migration
             $table->integer('helicopters');
             $table->integer('attack_helicopters');
             $table->text('notes');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

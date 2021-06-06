@@ -22,7 +22,11 @@ class CountryFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'country_name' => $this->faker->country,
+            'country_code'=>$this->faker->countryCode,
+            'country_title'=>$this->faker->title(),
+            'country_description' =>$this->faker->text(),
+
         ];
     }
 }

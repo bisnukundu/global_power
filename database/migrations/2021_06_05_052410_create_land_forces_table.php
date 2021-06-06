@@ -14,14 +14,15 @@ class CreateLandForcesTable extends Migration
     public function up()
     {
         Schema::create('land_forces', function (Blueprint $table) {
-            $table->id();
-            $table->integer('country_id');
+            $table->increments('id');
+            $table->unsignedInteger('country_id');
             $table->integer('tanks');
             $table->integer('armored_vehicles');
             $table->integer('self_propelled_artillery');
             $table->integer('towed_artillery');
             $table->integer('rocket_projectors');
-            $table->char('notes');
+            $table->text('notes');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -14,8 +14,8 @@ class CreateNavalForcesTable extends Migration
     public function up()
     {
         Schema::create('naval_forces', function (Blueprint $table) {
-            $table->id();
-            $table->integer('country_id');
+            $table->increments('id');
+            $table->unsignedInteger('country_id');
             $table->integer('total_assets');
             $table->integer('aircraft_carriers');
             $table->integer('helicopter_carriers');
@@ -26,6 +26,7 @@ class CreateNavalForcesTable extends Migration
             $table->integer('patrol_vessels');
             $table->integer('mine_warfare');
             $table->text('notes');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

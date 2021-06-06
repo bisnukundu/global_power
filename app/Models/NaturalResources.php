@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class NaturalResources extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        "country_id",
+        "oil_production",
+        "oil_consumption",
+        "oil_proven_reserves",
+        "notes",
+    ];
+    function country()
+    {
+        $this->belongsTo(Country::class, 'country_id');
+    }
 }

@@ -14,12 +14,13 @@ class CreateNaturalResourcesTable extends Migration
     public function up()
     {
         Schema::create('natural_resources', function (Blueprint $table) {
-            $table->id();
-            $table->integer('country_id');
+            $table->increments('id');
+            $table->unsignedInteger('country_id');
             $table->integer('oil_production');
             $table->integer('oil_consumption');
             $table->integer('oil_proven_reserves');
             $table->text('notes');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

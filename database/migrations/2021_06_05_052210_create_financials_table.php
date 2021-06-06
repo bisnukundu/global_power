@@ -14,13 +14,14 @@ class CreateFinancialsTable extends Migration
     public function up()
     {
         Schema::create('financials', function (Blueprint $table) {
-            $table->id();
-            $table->integer('country_id');
+            $table->increments('id');
+            $table->unsignedInteger('country_id');
             $table->integer('defense_budget');
             $table->integer('external_debt');
             $table->integer('foreign_exchange_gold');
             $table->integer('purchasing_power_parity');
-            $table->integer('notes');
+            $table->text('notes');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

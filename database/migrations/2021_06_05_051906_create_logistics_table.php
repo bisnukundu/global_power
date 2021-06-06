@@ -14,7 +14,7 @@ class CreateLogisticsTable extends Migration
     public function up()
     {
         Schema::create('logistics', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->unsignedInteger('country_id');
             $table->integer('labor_force');
             $table->integer('marchant_marine_fleet');
@@ -22,7 +22,7 @@ class CreateLogisticsTable extends Migration
             $table->integer('roadway_coverage');
             $table->integer('railway_coverage');
             $table->integer('airports');
-            $table->integer('notes');
+            $table->text('notes');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
