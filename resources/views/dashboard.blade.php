@@ -20,7 +20,7 @@
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             @error('country_name')
                                 <x-error-show>
-                                    {{$message}}
+                                    {{ $message }}
                                 </x-error-show>
                             @enderror
                         </div>
@@ -32,9 +32,9 @@
                                 id="country_code"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             @error('country_code')
-                            <x-error-show>
-                                {{$message}}
-                            </x-error-show>
+                                <x-error-show>
+                                    {{ $message }}
+                                </x-error-show>
                             @enderror
                         </div>
 
@@ -45,9 +45,9 @@
                                 id="country_title"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             @error('country_title')
-                            <x-error-show>
-                                {{$message}}
-                            </x-error-show>
+                                <x-error-show>
+                                    {{ $message }}
+                                </x-error-show>
                             @enderror
                         </div>
 
@@ -60,9 +60,9 @@
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                 cols="30" rows="10"></textarea>
                             @error('country_desc')
-                            <x-error-show>
-                                {{$message}}
-                            </x-error-show>
+                                <x-error-show>
+                                    {{ $message }}
+                                </x-error-show>
                             @enderror
 
                         </div>
@@ -111,14 +111,17 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($country as $count)
+
+                            @forelse ($country as $count)
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 h-10 w-10">
-                                                <img class="h-10 w-10"
-                                                    src="https://www.countryflags.io/{{ $count->country_code }}/flat/64.png"
-                                                    alt="">
+                                                <a href="{{ route('country_details', $count->id) }}">
+                                                    <x-country-flag>
+                                                        {{ $count->country_code }}
+                                                    </x-country-flag>
+                                                </a>
                                             </div>
                                             <div class="ml-4">
                                                 <div class=" text-lg font-medium text-gray-900">
@@ -136,9 +139,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900">{{ $count->country_title }}</div>
                                     </td>
-                                    {{-- <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm text-gray-900">{{$count->country_description}}</div>
-                              </td> --}}
+
                                     <form action="{{ route('country.destroy', $count->id) }}" method="POST">
                                         @csrf
                                         @method('delete')
@@ -149,7 +150,11 @@
                                     </form>
 
                                 </tr>
-                            @endforeach
+                                @empty
+                                <td colspan="4">
+                                    <h3 class="text-center text-2xl font-bold text-gray-500">Country Not Found</h3>
+                                </td>
+                            @endforelse
                             <!-- More people... -->
                         </tbody>
                     </table>

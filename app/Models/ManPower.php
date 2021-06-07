@@ -22,6 +22,6 @@ class ManPower extends Model
     ];
     function country()
     {
-        $this->belongsTo(Country::class, 'country_id');
+       return $this->belongsTo(Country::class, 'country_id');
     }
 }

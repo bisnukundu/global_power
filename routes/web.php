@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AirPowerController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\CountryDetails;
 use App\Http\Controllers\FinancialsController;
 use App\Http\Controllers\GeorgraphyController;
 use App\Http\Controllers\LandForcesController;
@@ -41,5 +42,9 @@ Route::resource('logistic', LogisticController::class);
 Route::resource('manpower', ManPowerController::class);
 Route::resource('naturl_resource', NaturalResourcesController::class);
 Route::resource('naval_forces', NavalForcesController::class);
+
+Route::group(['prefix'=>"dashboard"],function(){
+    Route::get("country_details/{id}",[CountryDetails::class,'index'])->whereNumber('id')->name("country_details");
+});
 
 

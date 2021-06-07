@@ -12,6 +12,7 @@ class LandForcesFactory extends Factory
      *
      * @var string
      */
+    private static $country_id =1;
     protected $model = LandForces::class;
 
     /**
@@ -22,7 +23,13 @@ class LandForcesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "country_id" => self::$country_id++,
+            "tanks" => $this->faker->randomNumber(),
+            "armored_vehicles" => $this->faker->randomNumber(),
+            'self_propelled_artillery' => $this->faker->randomNumber(),
+            "towed_artillery" => $this->faker->randomNumber(),
+            "rocket_projectors" => $this->faker->randomNumber(),
+            'notes' => $this->faker->text(),
         ];
     }
 }

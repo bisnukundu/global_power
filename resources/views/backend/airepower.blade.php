@@ -20,10 +20,9 @@
                                 name="country_id" id="country_id">
                                 <option label="Select Country"></option>
                                 @foreach ($countrys as $country)
-                                    <option value="{{ $country->id }}">{{ $country->country_name }} <img
-                                            class="h-10 w-10"
-                                            src="https://www.countryflags.io/{{ $country->country_code }}/flat/64.png"
-                                            alt=""></option>
+                                    <option value="{{ $country->id }}">
+                                        {{ $country->country_name }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('country_id')
@@ -37,7 +36,8 @@
                         <div class="col-span-6 sm:col-span-3">
                             <label for="aircraft_strength" class="block text-sm font-medium text-gray-700">Total
                                 Aircraft Strength</label>
-                            <input required value="{{old('aircraft_strength')}}" type="number" name="aircraft_strength" id="aircraft_strength"
+                            <input required value="{{ old('aircraft_strength') }}" type="number"
+                                name="aircraft_strength" id="aircraft_strength"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             @error('aircraft_strength')
                                 <x-error-show>
@@ -50,7 +50,7 @@
                         <div class="col-span-6 sm:col-span-3">
                             <label for="fighters"
                                 class="block text-sm font-medium text-gray-700">Fighters/Interceptors</label>
-                            <input required value="{{old('fighters')}}" type="number" name="fighters" id="fighters"
+                            <input required value="{{ old('fighters') }}" type="number" name="fighters" id="fighters"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                             @error('fighters')
@@ -63,7 +63,8 @@
                         <div class="col-span-6  sm:col-span-3">
                             <label for="dedicated_attack" class="block text-sm font-medium text-gray-700">Dedicated
                                 Attack</label>
-                            <input required value="{{old('dedicated_attack')}}" type="number" name="dedicated_attack" id="dedicated_attack"
+                            <input required value="{{ old('dedicated_attack') }}" type="number" name="dedicated_attack"
+                                id="dedicated_attack"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                             @error('dedicated_attack')
@@ -74,7 +75,8 @@
                         </div>
                         <div class="col-span-6  sm:col-span-3">
                             <label for="transports" class="block text-sm font-medium text-gray-700">Transports</label>
-                            <input required value="{{old('transports')}}" type="number" name="transports" id="transports"
+                            <input required value="{{ old('transports') }}" type="number" name="transports"
+                                id="transports"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                             @error('transports')
@@ -85,7 +87,7 @@
                         </div>
                         <div class="col-span-6  sm:col-span-6">
                             <label for="trainers" class="block text-sm font-medium text-gray-700">Trainers</label>
-                            <input required value="{{old('trainers')}}" type="number" name="trainers" id="trainers"
+                            <input required value="{{ old('trainers') }}" type="number" name="trainers" id="trainers"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                             @error('trainers')
@@ -97,7 +99,8 @@
                         <div class="col-span-6  sm:col-span-3">
                             <label for="special_mission"
                                 class="block text-sm font-medium text-gray-700">Special-Mission</label>
-                            <input required value="{{old('special_mission')}}" type="number" name="special_mission" id="special_mission"
+                            <input required value="{{ old('special_mission') }}" type="number" name="special_mission"
+                                id="special_mission"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                             @error('special_mission')
@@ -110,7 +113,8 @@
                         <div class="col-span-6  sm:col-span-3">
                             <label for="tanker_fleet" class="block text-sm font-medium text-gray-700">Tanker
                                 Fleet</label>
-                            <input required value="{{old('tanker_fleet')}}" type="number" name="tanker_fleet" id="tanker_fleet"
+                            <input required value="{{ old('tanker_fleet') }}" type="number" name="tanker_fleet"
+                                id="tanker_fleet"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                             @error('tanker_fleet')
@@ -121,7 +125,8 @@
                         </div>
                         <div class="col-span-6  sm:col-span-3">
                             <label for="helicopter" class="block text-sm font-medium text-gray-700">Helicopters</label>
-                            <input required value="{{old('helicopter')}}" type="number" name="helicopter" id="helicopter"
+                            <input required value="{{ old('helicopter') }}" type="number" name="helicopter"
+                                id="helicopter"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                             @error('helicopter')
@@ -133,7 +138,8 @@
                         <div class="col-span-6  sm:col-span-3">
                             <label for="attack_helicopter" class="block text-sm font-medium text-gray-700">Attack
                                 Helicopters</label>
-                            <input required value="{{old('attack_helicopter')}}" type="number" name="attack_helicopter" id="attack_helicopter"
+                            <input required value="{{ old('attack_helicopter') }}" type="number"
+                                name="attack_helicopter" id="attack_helicopter"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
 
                             @error('attack_helicopter')
@@ -145,7 +151,7 @@
 
                         <div class="col-span-6">
                             <label for="airpower_notes" class="block text-sm font-medium text-gray-700">Notes</label>
-                            <textarea value="{{old('airpower_notes')}}" name="airpower_notes" id="airpower_notes"
+                            <textarea value="{{ old('airpower_notes') }}" name="airpower_notes" id="airpower_notes"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                 cols="30" rows="10"></textarea>
 

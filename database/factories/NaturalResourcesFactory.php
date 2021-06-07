@@ -13,7 +13,7 @@ class NaturalResourcesFactory extends Factory
      * @var string
      */
     protected $model = NaturalResources::class;
-
+    protected static $country_id =1;
     /**
      * Define the model's default state.
      *
@@ -22,7 +22,11 @@ class NaturalResourcesFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "country_id" => self::$country_id++,
+            "oil_production" => $this->faker->randomNumber(),
+            "oil_consumption" => $this->faker->randomNumber(),
+            "oil_proven_reserves" => $this->faker->randomNumber(),
+            "notes" => $this->faker->text()
         ];
     }
 }

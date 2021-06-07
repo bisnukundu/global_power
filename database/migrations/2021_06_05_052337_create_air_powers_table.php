@@ -17,11 +17,11 @@ class CreateAirPowersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('country_id');
             $table->integer('total_aircraft_strength');
-            $table->integer('fighters/interceptors');
-            $table->integer('dedicated attack');
+            $table->integer('fighters_interceptors');
+            $table->integer('dedicated_attack');
             $table->integer('transports');
             $table->integer('trainers');
-            $table->integer('special-mission');
+            $table->integer('special_mission');
             $table->integer('tanker_fleet');
             $table->integer('helicopters');
             $table->integer('attack_helicopters');

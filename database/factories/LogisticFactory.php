@@ -13,6 +13,7 @@ class LogisticFactory extends Factory
      * @var string
      */
     protected $model = Logistic::class;
+    protected static $country_id =1;
 
     /**
      * Define the model's default state.
@@ -22,7 +23,14 @@ class LogisticFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "country_id" => self::$country_id++,
+            "labor_force" => $this->faker->randomNumber(),
+            "marchant_marine_fleet" => $this->faker->randomNumber(),
+            "ports_trade_terminals" =>$this->faker->randomNumber(),
+            "roadway_coverage" => $this->faker->randomNumber(),
+            "railway_coverage" => $this->faker->randomNumber(),
+            "airports" => $this->faker->randomNumber(),
+            "notes" => $this->faker->text()
         ];
     }
 }

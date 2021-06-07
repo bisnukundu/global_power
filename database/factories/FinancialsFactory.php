@@ -12,6 +12,7 @@ class FinancialsFactory extends Factory
      *
      * @var string
      */
+    private static $country_id =1;
     protected $model = Financials::class;
 
     /**
@@ -22,7 +23,12 @@ class FinancialsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "country_id" => self::$country_id++,
+            "defense_budget" => $this->faker->randomNumber(),
+            "external_debt" =>$this->faker->randomNumber(),
+            "foreign_exchange_gold" => $this->faker->randomNumber(),
+            "purchasing_power_parity" => $this->faker->randomNumber(),
+            "notes" =>$this->faker->text()
         ];
     }
 }
