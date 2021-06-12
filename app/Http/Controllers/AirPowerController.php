@@ -89,7 +89,7 @@ class AirPowerController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.edit_airepower',['airepower_edit' => AirPower::find($id)]);
     }
 
     /**
@@ -101,7 +101,34 @@ class AirPowerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "aircraft_strength" => "required",
+            "fighters" => "required",
+            "dedicated_attack" => "required",
+            "transports" => "required",
+            "trainers" => "required",
+            "special_mission" => "required",
+            "tanker_fleet" => "required",
+            "helicopter" => "required",
+            "attack_helicopter" => "required",
+            "airpower_notes" => "required",
+        ]);
+
+        $airpowerUpdate = AirPower::find($id)->update([
+            'total_aircraft_strength' => $request->aircraft_strength,
+            'fighters_interceptors' => $request->fighters,
+            'dedicated_attack'=>$request->dedicated_attack,
+            'transports'=>$request->transports,
+            'trainers'=>$request->trainers,
+            'special_mission'=>$request->special_mission,
+            'tanker_fleet'=>$request->tanker_fleet,
+            'helicopters'=>$request->helicopter,
+            'attack_helicopters'=>$request->attack_helicopter,
+            'notes'=>$request->airpower_notes,
+        ]);
+        if($airpowerUpdate){
+            return redirect()->route('country_details',$id);
+        }
     }
 
     /**

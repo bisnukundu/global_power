@@ -76,7 +76,7 @@ class GeorgraphyController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.edit_geography',['edit_geography' => Georgraphy::find($id)]);
     }
 
     /**
@@ -88,7 +88,24 @@ class GeorgraphyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+
+            "square_land_area" => "required",
+            "coastline_coverage" => "required",
+            "shared_borders" => "required",
+            "waterways_usable" => "required",
+            "geography_note" => "required"
+        ]);
+        $geography_create = Georgraphy::find($id)->update([
+            "square_land_area" => $request->square_land_area,
+            "coastline_coverage" => $request->coastline_coverage,
+            "shared_borders" => $request->shared_borders,
+            "waterways_usable" => $request->waterways_usable,
+            "notes" => $request->geography_note,
+        ]);
+        if($geography_create){
+            return redirect()->route('country_details',$id);
+        }
     }
 
     /**

@@ -80,7 +80,7 @@ class LandForcesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.edit_landforces', ['edit_landforces' => LandForces::find($id)]);
     }
 
     /**
@@ -92,7 +92,26 @@ class LandForcesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "tanks" => "required",
+            "armored_vehicles" => "required",
+            "self_propelled_artillery" => "required",
+            "towed_artillery" => "required",
+            "rocket_projectors" => "required",
+            "landforce_note" => "required"
+        ]);
+        $landforeces_create = LandForces::find($id)->update([
+            "tanks" => $request->tanks,
+            "armored_vehicles" => $request->armored_vehicles,
+            'self_propelled_artillery' => $request->self_propelled_artillery,
+            "towed_artillery" => $request->towed_artillery,
+            "rocket_projectors" => $request->rocket_projectors,
+            'notes' => $request->landforce_note,
+        ]);
+
+        if ($landforeces_create) {
+            return redirect()->route('country_details', $id);
+        }
     }
 
     /**

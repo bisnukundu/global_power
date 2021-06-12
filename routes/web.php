@@ -4,6 +4,7 @@ use App\Http\Controllers\AirPowerController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CountryDetails;
 use App\Http\Controllers\FinancialsController;
+use App\Http\Controllers\frontend\Country_list;
 use App\Http\Controllers\GeorgraphyController;
 use App\Http\Controllers\LandForcesController;
 use App\Http\Controllers\LogisticController;
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.home');
 });
 
 
@@ -42,9 +43,10 @@ Route::resource('logistic', LogisticController::class);
 Route::resource('manpower', ManPowerController::class);
 Route::resource('naturl_resource', NaturalResourcesController::class);
 Route::resource('naval_forces', NavalForcesController::class);
-
-Route::group(['prefix'=>"dashboard"],function(){
-    Route::get("country_details/{id}",[CountryDetails::class,'index'])->whereNumber('id')->name("country_details");
-});
+Route::get("country_details/{id}",[CountryDetails::class,'index'])->whereNumber('id')->name("country_details");
 
 
+
+
+// Front-End
+Route::resource('/countrys',Country_list::class);

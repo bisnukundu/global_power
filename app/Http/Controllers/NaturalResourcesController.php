@@ -53,8 +53,8 @@ class NaturalResourcesController extends Controller
             "notes" => $request->airpower_notes
         ]);
 
-        if($create){
-            return redirect()->back()->with("msg","Natural Resources Create Successfully");
+        if ($create) {
+            return redirect()->back()->with("msg", "Natural Resources Create Successfully");
         }
     }
 
@@ -77,7 +77,7 @@ class NaturalResourcesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.edit_natur_resourch', ['edit_natur_resourch' => NaturalResources::find($id)]);
     }
 
     /**
@@ -89,7 +89,23 @@ class NaturalResourcesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "oil_production" => "required",
+            "oil_consumption" => "required",
+            "oil_proven_reserves" => "required",
+            "airpower_notes" => "required"
+        ]);
+
+        $create = NaturalResources::find($id)->update([
+            "oil_production" => $request->oil_production,
+            "oil_consumption" => $request->oil_consumption,
+            "oil_proven_reserves" => $request->oil_proven_reserves,
+            "notes" => $request->airpower_notes
+        ]);
+
+        if ($create) {
+            return redirect()->route('country_details', $id);
+        }
     }
 
     /**

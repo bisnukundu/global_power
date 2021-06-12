@@ -89,7 +89,7 @@ class NavalForcesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.edit_naval_forces',['edit_naval_forces' => NavalForces::find($id)]);
     }
 
     /**
@@ -101,7 +101,35 @@ class NavalForcesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "total_assets" => "required",
+            "aircraft_carriers" => "required",
+            "helicopter_carriers" => "required",
+            "destroyers" => "required",
+            "frigates" => "required",
+            "corvettes" => "required",
+            "submarines" => "required",
+            "patrol_vessels" => "required",
+            "mine_warfare" => "required",
+            "naval_forces_notes" => "required"
+        ]);
+        $create = NavalForces::find($id)->update([
+            "total_assets" => $request->total_assets,
+            "aircraft_carriers" => $request->aircraft_carriers,
+            "helicopter_carriers" => $request->helicopter_carriers,
+            "destroyers" => $request->destroyers,
+            "frigates" => $request->frigates,
+            "corvettes" => $request->corvettes,
+            "submarines" => $request->submarines,
+            "patrol_vessels" => $request->patrol_vessels,
+            "mine_warfare" => $request->mine_warfare,
+            "notes" => $request->naval_forces_notes
+
+        ]);
+
+        if($create){
+            return redirect()->route('country_details',$id);
+        }
     }
 
     /**

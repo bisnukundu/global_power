@@ -39,6 +39,6 @@ class Country extends Model
     }
     public function navalForces()
     {
-        return $this->hasOne(NaturalResources::class, 'country_id');
+        return $this->hasOne(NavalForces::class, 'country_id');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Logistic;
 use Illuminate\Http\Request;
+use PHPUnit\TextUI\XmlConfiguration\Logging\Logging;
 
 class LogisticController extends Controller
 {
@@ -82,7 +83,7 @@ class LogisticController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.edit_logistic',['edit_logistic'=>Logistic::find($id)]);
     }
 
     /**
@@ -94,7 +95,30 @@ class LogisticController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+
+            "labor_force" => "required",
+            "marchant_marine_fleet" => "required",
+            "ports_trade_terminals" => "required",
+            "road_coverage" => "required",
+            "railway_coverage" => "required",
+            "airports" => "required",
+            "logistic_note" => "required"
+        ]);
+       $logistic_create = Logistic::find($id)->update([
+
+            "labor_force" => $request->labor_force,
+            "marchant_marine_fleet" => $request->marchant_marine_fleet,
+            "ports_trade_terminals" => $request->ports_trade_terminals,
+            "roadway_coverage" => $request->road_coverage,
+            "railway_coverage" => $request->railway_coverage,
+            "airports" => $request->airports,
+            "notes" => $request->logistic_note
+        ]);
+
+        if($logistic_create){
+            return redirect()->route('country_details',$id);
+        }
     }
 
     /**
