@@ -50,3 +50,6 @@ Route::get("country_details/{id}",[CountryDetails::class,'index'])->whereNumber(
 
 // Front-End
 Route::resource('/countrys',Country_list::class);
+
+
+Route::view('/test','test');

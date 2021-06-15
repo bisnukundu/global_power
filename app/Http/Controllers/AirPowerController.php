@@ -52,6 +52,7 @@ class AirPowerController extends Controller
             "airpower_notes" => "required",
             'country_id' =>"required"
         ]);
+        // dd($request->all());
         $airpowerCreate = AirPower::create([
             'country_id' => $request->country_id,
             'total_aircraft_strength' => $request->aircraft_strength,

@@ -48,6 +48,7 @@ class Country_list extends Controller
      */
     public function show($id)
     {
+        
         return view('frontend.single_country',['country'=> Country::find($id)]);
     }
 

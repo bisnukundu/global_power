@@ -7,10 +7,13 @@
     <title>{{$title ?? "Home"}}</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/loader.js') }}" ></script>
 </head>
 <body>
 <x-frontend.navbar/>
 {{$slot}}
 <x-frontend.footer/>
+
+{{$footer_js ?? ""}}
 </body>
 </html>

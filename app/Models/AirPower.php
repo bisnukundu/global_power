@@ -16,11 +16,11 @@ class AirPower extends Model
         "special",
         "tanker_fleet",
         "helicopters",
-        "fighters/interceptors",
-        "dedicated attack",
+        "fighters_interceptors",
+        "dedicated_attack",
         "attack_helicopters",
         "notes",
-        'special-mission',
+        'special_mission',
     ];
     function country()
     {
