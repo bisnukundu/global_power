@@ -104,10 +104,11 @@
                 echo dynamic_chart($navalForces); ?>
             ]);
 
+
         </script>
     </x-slot>
 
-
+    <div id="chart_div"></div>
 
     <div class="h-full bg-gray-200">
         <div class="container mx-auto p-20 shadow-sm rounded-sm bg-white">
@@ -328,10 +329,10 @@
                 <span class="w-20 mb-3 md:mb-0 h-1 block mx-auto  bg-red-400"></span>
                 <div class="mb-36 shadow-md lg:p-20 rounded-md">
                     <div class="grid  gap-2 grid-cols-1 md:grid-cols-3">
-                        <div class="border rounded-md p-4 shadow-sm hover:shadow-md cursor-pointer">
+                        <a href="{{route('total_population')}}" class="border rounded-md p-4 shadow-sm hover:shadow-md cursor-pointer">
                             <h3 class="text-xl mb-2 font-bold">Total Population</h3>
                             @money($country->manpower->total_population)
-                        </div>
+                        </a>
 
                         <div class="border rounded-md p-4 shadow-sm hover:shadow-md cursor-pointer">
                             <h3 class="text-xl mb-2 font-bold">Available Manpower </h3>

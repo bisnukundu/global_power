@@ -5,6 +5,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CountryDetails;
 use App\Http\Controllers\FinancialsController;
 use App\Http\Controllers\frontend\Country_list;
+use App\Http\Controllers\frontend\Total_population;
 use App\Http\Controllers\GeorgraphyController;
 use App\Http\Controllers\LandForcesController;
 use App\Http\Controllers\LogisticController;
@@ -50,6 +51,7 @@ Route::get("country_details/{id}",[CountryDetails::class,'index'])->whereNumber(
 
 // Front-End
 Route::resource('/countrys',Country_list::class);
+Route::get('countrys-population',[Total_population::class,'index'])->name('total_population');
 
 
 Route::view('/test','test');
